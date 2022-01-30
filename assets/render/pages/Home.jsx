@@ -36,7 +36,7 @@ const Home = () => {
                     )}
                     {loading && <div>A moment please...</div>}
                     {data &&
-                        data.map(({id, title, content, createdAt}) => (
+                        data.map(({id, title, createdAt, content}) => (
                                 <div className="news__item" key={id}>
                                     <div className="news_title">{title}</div>
                                     <div className="news_date">{new Intl.DateTimeFormat("fr-FR", {
