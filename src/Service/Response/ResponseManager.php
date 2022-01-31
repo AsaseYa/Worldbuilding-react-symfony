@@ -13,7 +13,7 @@ class ResponseManager
      * @param array $query
      * @return Response
      */
-    public function responseBuilder(array $query): Response
+    public function responseQueryBuilder(array $query): Response
     {
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
