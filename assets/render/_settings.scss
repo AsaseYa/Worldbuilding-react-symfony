@@ -1,11 +1,14 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Press+Start+2P&family=Supermercado+One&display=swap');
 
-$text-font: 'Montserrat', sans-serif;
+$text-font: 'Acme', sans-serif;
 
 // Colors
-$primary-color: #f8f9fa;
+$primary-color: #0a101a;
 $secondary-color: #dee2e6;
+
+$black: #000000;
+$white: #FFFFFF;
 
 $primary-widget-color: #91D982;
 $secondary-widget-color: #5AD871;
@@ -16,7 +19,12 @@ $danger-color: #E34F26;
 $invalid-background-color: #f8d7da;
 $invalid-text-color: #7d2b33;
 
-body {
+$border-radius: 5px;
+
+//buttons
+$button-text-color: #03e9f4;
+
+body{
   margin: 0;
   font-family: $text-font;
 }

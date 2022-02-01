@@ -2,6 +2,7 @@
 
 // Pages
 @import './pages/_home.scss';
+@import './pages/_login.scss';
 
 // Components
   //Navbar
@@ -9,3 +10,4 @@
 
   //form
 @import './components/form/_text-input.scss';
+@import './components/form/_submit-button.scss';

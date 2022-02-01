@@ -4,6 +4,7 @@ import axios from "axios";
 import jwt from 'jwt-decode'
 import {useNavigate} from "react-router-dom";
 import TextInput from "../components/form/TextInput";
+import SubmitButton from "../components/form/SubmitButton";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -53,10 +54,12 @@ const Login = () => {
             <div className="page__container">
                 <div className={'login_container'}>
                     <img className={'login_picture'} src='https://i.imgur.com/rpFqZw7.png' alt='logo'/>
-                    <form className={'form_container'} onSubmit={loginSubmit}>
-                        <TextInput label={'Email'} name={'username'} required={true} type={'text'} value={user.username} onChange={changeInput}/>
-                        <TextInput label={'Password'} name={'password'} required={true} type={'password'} value={user.password} onChange={changeInput}/>
-                        <button type='submit' className={'form_submit'}>Connection !</button>
+                    <form className={'login_form_container'} onSubmit={loginSubmit}>
+                        <TextInput label={'Email'} name={'username'} required={true} type={'text'} value={user.username}
+                                   onChange={changeInput}/>
+                        <TextInput label={'Password'} name={'password'} required={true} type={'password'}
+                                   value={user.password} onChange={changeInput}/>
+                        <SubmitButton value={'Connection !'}/>
                     </form>
                 </div>
             </div>

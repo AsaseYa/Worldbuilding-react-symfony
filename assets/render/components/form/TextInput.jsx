@@ -2,8 +2,7 @@ import React from 'react';
 
 const MyComponent = ({label, name, required, type, value, onChange}) => {
     return (
-        <div className={`input_container_${label}`}>
-            <label className={required ? 'required' : ''} htmlFor={label}>{label}</label>
+        <div id={`input_container_${label}`} className={'input_container'} >
             <input
                 value={value}
                 onChange={onChange}
@@ -12,6 +11,7 @@ const MyComponent = ({label, name, required, type, value, onChange}) => {
                 id={label}
                 name={name}
             />
+            <label className={required ? 'required' : ''} htmlFor={label}>{label}</label>
         </div>
     );
 };
