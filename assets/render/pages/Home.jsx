@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/navbar/Navbar';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
@@ -28,7 +27,6 @@ const Home = () => {
 
     return (
         <>
-            <Navbar/>
             <div className="page__container">
                 <div className="news__container">
                     {error && (

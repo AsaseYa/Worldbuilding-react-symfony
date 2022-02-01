@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import jwt from "jwt-decode";
 
-const Navbar = () => {
-    const [isLogin, setIsLogin] = useState(false);
+const TopNavbar = () => {
+/*    const [isLogin, setIsLogin] = useState(false);
     useEffect(async () => {
         let token = localStorage.getItem("token");
         if (token) {
@@ -12,7 +10,7 @@ const Navbar = () => {
         } else {
             await setIsLogin(false);
         }
-    }, [])
+    }, [])*/
 
     let menuItem = [
         ['Accueil', '/'],
@@ -20,15 +18,15 @@ const Navbar = () => {
         ['Mon compte', '/register']
     ]
 
-    if (isLogin) {
+/*    if (isLogin) {
         menuItem = [
             ['Accueil', '/'],
             ['Mon compte', '/profil']
         ]
-    }
+    }*/
 
     return (
-        <div className={"navbar__container"}>
+        <div className={"top_navbar_container"}>
             <div className="navbar__logo">
                 <NavLink to='/'><img src="https://i.imgur.com/rpFqZw7.png" alt="logo"/></NavLink>
             </div>
@@ -41,4 +39,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default TopNavbar;

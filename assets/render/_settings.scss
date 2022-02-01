@@ -20,11 +20,15 @@ $invalid-background-color: #f8d7da;
 $invalid-text-color: #7d2b33;
 
 $border-radius: 5px;
+$box-padding: 1rem;
 
 //buttons
 $button-text-color: #03e9f4;
 
-body{
+//navbar
+$side-navbar-width: 200px;
+
+body {
   margin: 0;
   font-family: $text-font;
 }

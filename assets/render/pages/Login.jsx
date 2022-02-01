@@ -1,10 +1,10 @@
 import React, {useEffect, useReducer, useState} from 'react';
-import Navbar from "../components/navbar/Navbar";
 import axios from "axios";
 import jwt from 'jwt-decode'
 import {useNavigate} from "react-router-dom";
 import TextInput from "../components/form/TextInput";
 import SubmitButton from "../components/form/SubmitButton";
+import SideNavbar from "../components/navbar/SideNavbar";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -47,20 +47,22 @@ const Login = () => {
         }
     }
 
-
     return (
         <>
-            <Navbar/>
             <div className="page__container">
-                <div className={'login_container'}>
-                    <img className={'login_picture'} src='https://i.imgur.com/rpFqZw7.png' alt='logo'/>
-                    <form className={'login_form_container'} onSubmit={loginSubmit}>
-                        <TextInput label={'Email'} name={'username'} required={true} type={'text'} value={user.username}
-                                   onChange={changeInput}/>
-                        <TextInput label={'Password'} name={'password'} required={true} type={'password'}
-                                   value={user.password} onChange={changeInput}/>
-                        <SubmitButton value={'Connection !'}/>
-                    </form>
+                <SideNavbar/>
+                <div className="login__page__container">
+                    <div className={'login_container'}>
+                        <img className={'login_picture'} src='https://i.imgur.com/rpFqZw7.png' alt='logo'/>
+                        <form className={'login_form_container'} onSubmit={loginSubmit}>
+                            <TextInput label={'Email'} name={'username'} required={true} type={'text'}
+                                       value={user.username}
+                                       onChange={changeInput}/>
+                            <TextInput label={'Password'} name={'password'} required={true} type={'password'}
+                                       value={user.password} onChange={changeInput}/>
+                            <SubmitButton value={'Connection !'}/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>
