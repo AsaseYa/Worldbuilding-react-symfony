@@ -12,6 +12,7 @@ class NewsFixtures extends Fixture
 
     const NEWS = [
         [[2022, 01, 30, 12, 15, 53], 'Lancement du site! Première navbar faite. accès Home avec les news. Front React et back en symfony'],
+        [[2022, 02, 01, 13, 32, 25], 'Création d\'une side bar. Le login en JWT est fonctionnel. modification générale du style'],
     ];
 
     public function load(ObjectManager $manager): void
