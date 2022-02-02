@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row-reverse; //à modif
   flex-grow: 1;
-  height: 3rem;
+  max-height: 3rem;
   background-color: $white;
 
   .option_bar_menu {

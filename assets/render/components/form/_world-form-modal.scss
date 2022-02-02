@@ -1,0 +1,15 @@
+#transition-modal-description {
+  form {
+    background: $primary-color;
+    box-shadow: 0 15px 25px $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: $border-radius;
+    padding: 0.5rem;
+
+    div {
+      width: 100%;
+    }
+  }
+}
