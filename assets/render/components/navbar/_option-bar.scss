@@ -1,0 +1,19 @@
+.option_bar {
+  display: flex;
+  flex-direction: row-reverse; //à modif
+  flex-grow: 1;
+  max-height: 3rem;
+  background-color: $white;
+
+  .option_bar_menu {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 50%; //à modif
+    margin-right: 2rem;
+
+    .option_bar_menu_item {
+      //@TODO à modif le style
+    }
+  }
+}

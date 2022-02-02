@@ -10,8 +10,8 @@ $picture_height: calc(#{$card_width} * 9 / 16);
 
   .world__page__container {
     display: flex;
+    flex-direction: column;
     margin-left: $side-navbar-width; //side-bar relative
-    flex-grow: 1;
     width: 100%;
 
     .world__card__container {
@@ -20,24 +20,23 @@ $picture_height: calc(#{$card_width} * 9 / 16);
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      width: 100%;
+      margin: 3rem;
       gap: 3rem;
-      padding: 3rem;
 
       .world__card {
         display: flex;
         flex-direction: column;
         background-color: $primary-color;
         width: $card_width;
-        border-radius: 1rem;
+        border-radius: $border-radius;
         box-shadow: 0 15px 25px $primary-color;
         min-height: 15rem;
 
         img {
           width: $card_width;
           height: $picture_height;
-          border-top-left-radius: 1rem;
-          border-top-right-radius: 1rem;
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
         }
 
         .world_card_informations {
