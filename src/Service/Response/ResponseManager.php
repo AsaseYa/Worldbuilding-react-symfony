@@ -9,6 +9,22 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ResponseManager
 {
+
+    /**
+     * @return Response
+     */
+    public function responseUnauthorized(): Response
+    {
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response->setContent(json_encode([
+            'success' => false,
+            'status' => 401,
+            'content' => 'Unauthorized',
+        ]));
+    }
+
     /**
      * @param array $query
      * @return Response

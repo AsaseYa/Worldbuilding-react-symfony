@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,6 +25,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private string $password;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private string $nickname;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: World::class)]
+    private Collection $worlds;
+
+    public function __construct()
+    {
+        $this->worlds = new ArrayCollection();
+    }
 
     public function getUsername(): string
     {
@@ -97,5 +110,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNickname(): string
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname(string $nickname): self
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getWorlds(): Collection
+    {
+        return $this->worlds;
+    }
+
+    public function addWorld(World $world): self
+    {
+        if (!$this->worlds->contains($world)) {
+            $this->worlds[] = $world;
+            $world->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWorld(World $world): self
+    {
+        if ($this->worlds->removeElement($world)) {
+            // set the owning side to null (unless already changed)
+            if ($world->getUser() === $this) {
+                $world->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
