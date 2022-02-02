@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../components/navbar/Navbar';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import SideNavbar from "../components/navbar/SideNavbar";
 
 const Home = () => {
     const [data, setData] = useState(null);
@@ -28,32 +28,35 @@ const Home = () => {
 
     return (
         <>
-            <Navbar/>
             <div className="page__container">
-                <div className="news__container">
-                    {error && (
-                        <div>{`There is a problem fetching the post data - ${error}`}</div>
-                    )}
-                    {loading && <div>A moment please...</div>}
-                    {data &&
-                        data.map(({id, title, content, createdAt}) => (
-                                <div className="news__item" key={id}>
-                                    <div className="news_title">{title}</div>
-                                    <div className="news_date">{new Intl.DateTimeFormat("fr-FR", {
-                                        year: "numeric",
-                                        month: "long",
-                                        day: "2-digit",
-                                        hour: 'numeric',
-                                        minute: 'numeric',
-                                        second: 'numeric',
-                                        hour12: false,
-                                    }).format(new Date(createdAt.date))}</div>
-                                    <div className="news_text">
-                                        <p>{content}</p>
-                                    </div>
-                                </div>
-                            )
+                <SideNavbar/>
+                <div className={'news__page__container'}>
+                    <div className="news__container">
+                        {error && (
+                            <div>{`There is a problem fetching the post data - ${error}`}</div>
                         )}
+                        {loading && <div className={'loading'}>A moment please...</div>}
+                        {data &&
+                            data.map(({id, title, createdAt, content}) => (
+                                    <div className="news__item" key={id}>
+                                        <div className="news_title">{title}</div>
+                                        <div className="news_date">{new Intl.DateTimeFormat("fr-FR", {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "2-digit",
+                                            hour: 'numeric',
+                                            minute: 'numeric',
+                                            second: 'numeric',
+                                            hour12: false,
+                                        }).format(new Date(createdAt.date))}</div>
+                                        <div className="news_text">
+                                            <p>{content}</p>
+                                        </div>
+                                        <hr/>
+                                    </div>
+                                )
+                            )}
+                    </div>
                 </div>
             </div>
         </>

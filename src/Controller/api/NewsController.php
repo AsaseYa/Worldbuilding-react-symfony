@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/api/news', name: 'api_news_')]
 class NewsController extends AbstractController
 {
-    #[Route('/', name: 'all', methods: 'GET')]
+    #[Route('/', name: 'all', methods: ['GET'])]
     public function all(ResponseManager $responseManager, NewsRepository $newsRepository): Response
     {
-        return $responseManager->responseBuilder($newsRepository->findAllToArray());
+        return $responseManager->responseQueryBuilder($newsRepository->findAllToArray());
     }
 }

@@ -2,6 +2,14 @@
 
 // Pages
 @import './pages/_home.scss';
+@import './pages/_login.scss';
+@import './pages/_world.scss';
+@import './pages/_register.scss';
 
 // Components
-@import './components/navbar/_navbar.scss';
+  //Navbar
+@import 'components/navbar/_side-navbar';
+
+  //form
+@import './components/form/_text-input.scss';
+@import './components/form/_submit-button.scss';
