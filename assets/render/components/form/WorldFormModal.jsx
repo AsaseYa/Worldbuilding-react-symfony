@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextInput from "./TextInput";
 import SubmitButton from "./SubmitButton";
+import axios from "axios";
 
 const style = {
     position: 'absolute',
@@ -21,15 +22,16 @@ const style = {
     color: '#FFFFFF',
 };
 
-const WorldFormModal = () => {
-    const [open, setOpen] = React.useState(false);
+const WorldFormModal = ({open, setOpen}) => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     let [state, setState] = useState({
         world: {
             name: '',
-            isPublic: '',
+            isPublic: false,
             url: '',
             description: ''
         }
@@ -43,6 +45,46 @@ const WorldFormModal = () => {
                 [event.target.name]: event.target.value,
             }
         }));
+    }
+
+    let updateCheck = (event) => {
+        setState((state) => ({
+            world: {
+                ...state.world,
+                [event.target.name]: event.target.checked,
+            }
+        }));
+    }
+
+    let worldSubmit = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        let token = localStorage.getItem("token");
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        };
+        try {
+            const res = await axios.post(
+                '/api/worlds/new', {
+                    name: state.world.name,
+                    isPublic: state.world.isPublic,
+                    url: state.world.url,
+                    description: state.world.description,
+                },
+                config
+            );
+            let response = JSON.parse(res.request.response);
+            if (response.success) {
+                setOpen(false)
+                setLoading(false);
+            } else {
+                setError(response.content);
+                setLoading(false);
+            }
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+        }
     }
 
     return (
@@ -65,13 +107,17 @@ const WorldFormModal = () => {
                             Créer un monde
                         </Typography>
                         <Typography id="transition-modal-description" sx={{mt: 2}}>
-                            <form>
+                            <form onSubmit={worldSubmit}>
                                 <TextInput label={'Nom du monde'} name={'name'} type={'text'} required={true}
                                            value={world.name} onChange={changeInput}/>
                                 <TextInput label={'Image'} name={'url'} type={'text'} required={true} value={world.url}
                                            onChange={changeInput}/>
                                 <TextInput label={'Description'} name={'description'} type={'textarea'} required={true}
                                            value={world.description} onChange={changeInput}/>
+                                <div className={'word_form_checkbox'}>
+                                    <label>En ligne ?</label>
+                                    <input type={'checkbox'} name={'isPublic'} onChange={updateCheck}/>
+                                </div>
                                 <SubmitButton value={'Créer votre monde !'}/>
                             </form>
                         </Typography>

@@ -1,3 +1,7 @@
+#transition-modal-title {
+  font-family: $text-font;
+}
+
 #transition-modal-description {
   form {
     background: $primary-color;
@@ -7,9 +11,16 @@
     align-items: center;
     border-radius: $border-radius;
     padding: 0.5rem;
+    font-family: $text-font;
 
     div {
       width: 100%;
+    }
+
+    .word_form_checkbox {
+      label {
+        color: $white;
+      }
     }
   }
 }

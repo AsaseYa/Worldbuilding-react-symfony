@@ -1,7 +1,7 @@
 import React from 'react';
 import WorldFormModal from "../form/WorldFormModal";
 
-const OptionBar = () => {
+const OptionBar = ({open, setOpen}) => {
     return (
         <div className={'option_bar'}>
             {/*<div className={'option_bar_path'}></div>*/}
@@ -10,7 +10,7 @@ const OptionBar = () => {
                 {/*                <NavLink className={'option_bar_menu_item'} to={'/worlds/new'}>
                     Nouveau Monde
                 </NavLink>*/}
-                <WorldFormModal/>
+                <WorldFormModal open={open} setOpen={setOpen}/>
             </div>
         </div>
     );
