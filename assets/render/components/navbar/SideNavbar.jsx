@@ -17,7 +17,7 @@ const SideNavbar = () => {
     let menuItem = [
         ['Accueil', '/'],
         ['Se connecter', '/login'],
-        ['Mon compte', '/register'],
+        ['S\'enregistrer', '/register'],
     ]
 
     if (isLogin) {

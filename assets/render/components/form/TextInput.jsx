@@ -10,6 +10,7 @@ const MyComponent = ({label, name, required, type, value, onChange}) => {
                 required={required}
                 id={label}
                 name={name}
+                placeholder={''}
             />
             <label className={required ? 'required' : ''} htmlFor={label}>{label}</label>
         </div>

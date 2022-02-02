@@ -20,6 +20,12 @@ class DefaultController extends AbstractController
         return $this->render('default/index.html.twig');
     }
 
+    #[Route('/register', name: 'app_register')]
+    public function register(): Response
+    {
+        return $this->render('default/index.html.twig');
+    }
+
     #[Route('/worlds', name: 'app_worlds')]
     public function world(): Response
     {

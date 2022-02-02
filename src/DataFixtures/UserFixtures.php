@@ -10,12 +10,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     const USERS = [
-        ['Lion', 'lion@gmail.com', 123, ['ROLE_ADMIN']],
-        ['Chat', 'chat@gmail.com', 123, []]
-    ];
+        ['LionDu32', 'lion@gmail.com', 123, ['ROLE_ADMIN']],
+        ['Chatoune', 'chat@gmail.com', 123, []]
+        ];
 
     public function __construct(private UserPasswordHasherInterface $passwordHasher)
-    {}
+    {
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -25,6 +26,7 @@ class UserFixtures extends Fixture
             $newUser->setEmail($user[1]);
             $newUser->setPassword($this->passwordHasher->hashPassword($newUser, $user[2]));
             $newUser->setRoles($user[3]);
+            $newUser->setNickname($user[0]);
             $manager->persist($newUser);
             $this->addReference('user_' . $key, $newUser);
         }

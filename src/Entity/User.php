@@ -26,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     private string $nickname;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: World::class)]

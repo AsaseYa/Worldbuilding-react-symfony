@@ -56,7 +56,6 @@ const Login = () => {
                     password: ''
                 }
             })
-        } finally {
             setLoading(false);
         }
 
@@ -75,7 +74,7 @@ const Login = () => {
                             {error && (
                                 <span className={'login_form_error'}>{`Les identifiants sont incorrects: ${error.message}`}</span>
                             )}
-                            <TextInput label={'Email'} name={'username'} required={true} type={'text'}
+                            <TextInput label={'Email'} name={'username'} required={true} type={'email'}
                                        value={user.username}
                                        onChange={changeInput}/>
                             <TextInput label={'Mot de passe'} name={'password'} required={true} type={'password'}
