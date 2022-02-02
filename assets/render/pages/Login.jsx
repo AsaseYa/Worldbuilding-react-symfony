@@ -8,7 +8,8 @@ import SideNavbar from "../components/navbar/SideNavbar";
 
 const Login = () => {
     const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     let [state, setState] = useState({
         user: {
             username: '',
@@ -29,23 +30,38 @@ const Login = () => {
 
     let loginSubmit = async (event) => {
         event.preventDefault();
-
-        const res = await axios.post(
-            '/api/login',
-            {
-                username: state.user.username,
-                password: state.user.password
+        setLoading(true);
+        try {
+            const res = await axios.post(
+                '/api/login',
+                {
+                    username: state.user.username,
+                    password: state.user.password
+                }
+            );
+            setError(null);
+            const token = res.data.token;
+            localStorage.setItem('token', token);
+            const userData = jwt(res.data.token)
+            if (userData.roles.includes('ROLE_ADMIN')) {
+                return navigate('/admin');
+            } else {
+                return navigate('/');
             }
-        );
-        const token = res.data.token;
-        localStorage.setItem('token', token);
-        const userData = jwt(res.data.token)
-        if (userData.roles.includes('ROLE_ADMIN')) {
-            return navigate('/admin');
-        } else {
-            return navigate('/');
+        } catch (err) {
+            setError(JSON.parse(err.request.response));
+            setState({
+                user: {
+                    username: '',
+                    password: ''
+                }
+            })
+        } finally {
+            setLoading(false);
         }
+
     }
+
 
     return (
         <>
@@ -55,10 +71,14 @@ const Login = () => {
                     <div className={'login_container'}>
                         <img className={'login_picture'} src='https://i.imgur.com/rpFqZw7.png' alt='logo'/>
                         <form className={'login_form_container'} onSubmit={loginSubmit}>
+                            {loading && <div className={'loading'}>A moment please...</div>}
+                            {error && (
+                                <span className={'login_form_error'}>{`Les identifiants sont incorrects: ${error.message}`}</span>
+                            )}
                             <TextInput label={'Email'} name={'username'} required={true} type={'text'}
                                        value={user.username}
                                        onChange={changeInput}/>
-                            <TextInput label={'Password'} name={'password'} required={true} type={'password'}
+                            <TextInput label={'Mot de passe'} name={'password'} required={true} type={'password'}
                                        value={user.password} onChange={changeInput}/>
                             <SubmitButton value={'Connection !'}/>
                         </form>

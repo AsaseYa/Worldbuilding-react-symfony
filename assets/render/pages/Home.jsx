@@ -35,7 +35,7 @@ const Home = () => {
                         {error && (
                             <div>{`There is a problem fetching the post data - ${error}`}</div>
                         )}
-                        {loading && <div>A moment please...</div>}
+                        {loading && <div className={'loading'}>A moment please...</div>}
                         {data &&
                             data.map(({id, title, createdAt, content}) => (
                                     <div className="news__item" key={id}>
