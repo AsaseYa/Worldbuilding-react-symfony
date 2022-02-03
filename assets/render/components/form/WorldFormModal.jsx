@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import TextInput from "./TextInput";
 import SubmitButton from "./SubmitButton";
 import axios from "axios";
+import {TextareaAutosize} from "@mui/material";
 
 const style = {
     position: 'absolute',
@@ -77,6 +78,14 @@ const WorldFormModal = ({open, setOpen}) => {
             if (response.success) {
                 setOpen(false)
                 setLoading(false);
+                setState({
+                    world: {
+                        name: '',
+                        isPublic: false,
+                        url: '',
+                        description: ''
+                    }
+                })
             } else {
                 setError(response.content);
                 setLoading(false);
@@ -89,7 +98,7 @@ const WorldFormModal = ({open, setOpen}) => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <SubmitButton value={'Nouveau monde'} onClick={handleOpen} />
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -106,21 +115,34 @@ const WorldFormModal = ({open, setOpen}) => {
                         <Typography id="transition-modal-title" variant="h6" component="h2">
                             Créer un monde
                         </Typography>
-                        <Typography id="transition-modal-description" sx={{mt: 2}}>
+                        <div id="transition-modal-description" sx={{mt: 2}}>
                             <form onSubmit={worldSubmit}>
                                 <TextInput label={'Nom du monde'} name={'name'} type={'text'} required={true}
                                            value={world.name} onChange={changeInput}/>
                                 <TextInput label={'Image'} name={'url'} type={'text'} required={true} value={world.url}
                                            onChange={changeInput}/>
-                                <TextInput label={'Description'} name={'description'} type={'textarea'} required={true}
-                                           value={world.description} onChange={changeInput}/>
+                                <div className={'world_text_area'}>
+                                    <TextareaAutosize
+                                        id={'world_text_area_id'}
+                                        minRows={1}
+                                        style={{width: '100%'}}
+                                        placeholder={''}
+                                        name={'description'}
+                                        value={world.description}
+                                        onChange={changeInput}
+                                    />
+                                    <label className={'world_text_area_label'} htmlFor={"world_text_area_id"}>
+                                        Description
+                                    </label>
+                                </div>
+
                                 <div className={'word_form_checkbox'}>
                                     <label>En ligne ?</label>
                                     <input type={'checkbox'} name={'isPublic'} onChange={updateCheck}/>
                                 </div>
                                 <SubmitButton value={'Créer votre monde !'}/>
                             </form>
-                        </Typography>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

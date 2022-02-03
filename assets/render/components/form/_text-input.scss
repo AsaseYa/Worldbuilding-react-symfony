@@ -1,7 +1,11 @@
-.input_container {
+.text_container,
+.email_container,
+.password_container {
   position: relative;
 
-  input {
+  .text_input,
+  .email_input,
+  .password_input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -11,14 +15,22 @@
     border-bottom: 1px solid $white;
     outline: none;
     background: transparent;
+
+    &:focus ~ label,
+    &:not(:placeholder-shown) ~ label, {
+      top: -20px;
+      left: 0;
+      font-size: 12px;
+    }
+
+    &:valid ~ label {
+      color: $valid-text-color;
+    }
   }
 
-  .required:after {
-    content: " *";
-    color: $danger-color;
-  }
-
-  label {
+  .text_label,
+  .email_label,
+  .password_label {
     position: absolute;
     top: 0;
     left: 0;
@@ -29,18 +41,9 @@
     transition: .5s;
   }
 
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label,
-  {
-    top: -20px;
-    left: 0;
-    font-size: 12px;
-  }
-
-
-  input:valid ~ label,
-  {
-    color: $valid-text-color;
+  .required:after {
+    content: " *";
+    color: $danger-color;
   }
 }
 
