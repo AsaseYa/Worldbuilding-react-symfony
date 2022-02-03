@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(#141e30, #243b55);
+  background-color: $secondary-color;
 
   .login__page__container {
     margin-left: $side-navbar-width; //side-bar relative

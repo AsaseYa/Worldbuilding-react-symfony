@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
+import NavigationButton from "./NavigationButton";
 
 const SideNavbar = () => {
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ const SideNavbar = () => {
             <div className={'side_navbar_menu'}>
                 <div className={'side_navbar_upper_items'}>
                     {menuItem.map((el) => {
-                        return <NavLink className={'navbar_item'} key={el[0]} to={el[1]}>{el[0]}</NavLink>
+                        return <NavigationButton value={el[0]} path={el[1]}/>
                     })}
                 </div>
                 <div className={'side_navbar_lower_items'}>

@@ -6,7 +6,7 @@ $picture_height: calc(#{$card_width} * 9 / 16);
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(#141e30, #243b55);
+  background-color: $secondary-color;
 
   .world__page__container {
     display: flex;
