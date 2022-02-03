@@ -31,8 +31,8 @@ const World = () => {
                 <OptionBar open={open} setOpen={setOpen}/>
                 <div className="world__card__container">
                     {data &&
-                        data.map(({id, name, isPublic, url, createdAt, description}) => (
-                                <NavLink className="world__card" key={id} to={'/worlds'}>
+                        data.map(({id, name, isPublic, url, createdAt, description, uuid}) => (
+                                <NavLink className="world__card" key={id} to={`/worlds/${uuid}`}>
                                     {/*<div className="world_status"></div> @TODO add loupiote is public */}
                                     <img src={url} alt={name}/>
                                     <div className="world_card_informations">

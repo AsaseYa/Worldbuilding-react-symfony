@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\WorldRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV4;
 
@@ -34,7 +35,7 @@ class World
     #[ORM\Column(type: 'text', nullable: true)]
     private string $description;
 
-    #[ORM\Column(type: 'uuid', unique:true)]
+    #[ORM\Column(type: 'uuid', unique: true)]
     private UuidV4 $uuid;
 
     public function __construct()
@@ -42,6 +43,7 @@ class World
         $this->uuid = Uuid::v4();
         $this->createdAt = new DateTimeImmutable();
     }
+
     public function getId(): int
     {
         return $this->id;
@@ -129,5 +131,19 @@ class World
         $this->uuid = $uuid;
 
         return $this;
+    }
+
+    #[ArrayShape(['id' => "int", 'name' => "string", 'createdAt' => "\DateTimeImmutable", 'uuid' => "\Symfony\Component\Uid\UuidV4", 'description' => "string", 'isPublic' => "bool", 'url' => "string"])]
+    public function convertToArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'createdAt' => $this->createdAt,
+            'uuid' => $this->uuid,
+            'description' => $this->description,
+            'isPublic' => $this->isPublic,
+            'url' => $this->url,
+        ];
     }
 }

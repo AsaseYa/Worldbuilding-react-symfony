@@ -9,6 +9,7 @@ use App\Service\Response\ResponseManager;
 use App\Service\User\UserManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,5 +54,24 @@ class WorldController extends AbstractController
             }
         }
         return $responseManager->responseSuccess('Le monde a bien été enregistré');
+    }
+
+    #[Route('/{worldSlug}', name: 'show', methods: ['GET'])]
+    #[ParamConverter('world', class: World::class, options: ['mapping' => ['worldSlug' => 'uuid']])]
+    public function showWorld(World $world, UserManager $userManager, ResponseManager $responseManager): Response
+    {
+        $token = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
+        $isAuth = $userManager->checkUser($token[1]);
+
+        if ($isAuth) {
+            try {
+                return $responseManager->responseQueryBuilder($world->convertToArray());
+            } catch (Exception $e) {
+                //@TODO handle error
+                return $responseManager->responseUnauthorized();
+            }
+        }
+        //@TODO handle error
+        return $responseManager->responseUnauthorized();
     }
 }

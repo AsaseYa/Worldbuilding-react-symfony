@@ -6,16 +6,18 @@ import Home from './render/pages/Home';
 import Login from './render/pages/Login';
 import Register from './render/pages/Register';
 import World from "./render/pages/World";
+import WorldStats from "./render/pages/WorldStats";
 
 class App extends Component {
     render() {
         return (
             <Router>
                 <Routes>
-                    <Route path={'/'} element={<Home/>}/>
-                    <Route path={'login'} element={<Login/>}/>
-                    <Route path={'register'} element={<Register/>}/>
-                    <Route path={'worlds'} element={<World/>}/>
+                    <Route exact path={'/'} element={<Home/>}/>
+                    <Route exact path={'login'} element={<Login/>}/>
+                    <Route exact path={'register'} element={<Register/>}/>
+                    <Route exact path={'worlds'} element={<World/>}/>
+                    <Route exact path={'worlds/:worldSlug'} element={<WorldStats/>}/>
                 </Routes>
             </Router>
         );
