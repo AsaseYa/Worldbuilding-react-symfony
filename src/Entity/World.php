@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\WorldRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\Uid\Uuid;
@@ -38,10 +40,14 @@ class World
     #[ORM\Column(type: 'uuid', unique: true)]
     private UuidV4 $uuid;
 
+    #[ORM\OneToMany(mappedBy: 'world', targetEntity: Character::class, orphanRemoval: true)]
+    private Collection $characters;
+
     public function __construct()
     {
         $this->uuid = Uuid::v4();
         $this->createdAt = new DateTimeImmutable();
+        $this->characters = new ArrayCollection();
     }
 
     public function getId(): int
@@ -145,5 +151,35 @@ class World
             'isPublic' => $this->isPublic,
             'url' => $this->url,
         ];
+    }
+
+    /**
+     * @return Collection|Character[]
+     */
+    public function getCharacters(): Collection
+    {
+        return $this->characters;
+    }
+
+    public function addCharacter(Character $character): self
+    {
+        if (!$this->characters->contains($character)) {
+            $this->characters[] = $character;
+            $character->setWorld($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacter(Character $character): self
+    {
+        if ($this->characters->removeElement($character)) {
+            // set the owning side to null (unless already changed)
+            if ($character->getWorld() === $this) {
+                $character->setWorld(null);
+            }
+        }
+
+        return $this;
     }
 }

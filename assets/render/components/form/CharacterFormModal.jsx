@@ -15,11 +15,11 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: '#0a101a',
+    bgcolor: '#FFFFFF',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    color: '#FFFFFF',
+    color: '#000000',
 };
 
 const CharacterFormModal = ({openCharacter, setOpenCharacter}) => {

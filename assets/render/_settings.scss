@@ -4,8 +4,8 @@
 $text-font: 'Acme', sans-serif;
 
 // Colors
-$primary-color: #0a101a;
-$secondary-color: #dee2e6;
+$primary-color: #FFFFFF;
+$secondary-color: #dee2e6 /*#D6D9CE*/;
 
 $black: #000000;
 $white: #FFFFFF;
@@ -20,11 +20,14 @@ $invalid-background-color: #f8d7da;
 $invalid-text-color: #7d2b33;
 $valid-text-color: #5AD871;
 
+$title-color: #91D982;
+$text-color: #000000;
+
 $border-radius: 5px;
 $box-padding: 1rem;
 
 //buttons
-$button-text-color: #03e9f4;
+$button-text-color: #91D982;
 
 //navbar
 $side-navbar-width: 200px;

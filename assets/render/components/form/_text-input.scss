@@ -9,10 +9,10 @@
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
-    color: $white;
+    color: $text-color;
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid $text-color;
     outline: none;
     background: transparent;
 
@@ -36,7 +36,7 @@
     left: 0;
     padding: 10px 0;
     font-size: 16px;
-    color: $white;
+    color: $text-color;
     pointer-events: none;
     transition: .5s;
   }

@@ -4,6 +4,7 @@ namespace App\Controller\api;
 
 use App\Entity\User;
 use App\Entity\World;
+use App\Repository\CharacterRepository;
 use App\Repository\WorldRepository;
 use App\Service\Response\ResponseManager;
 use App\Service\User\UserManager;
@@ -66,6 +67,24 @@ class WorldController extends AbstractController
         if ($isAuth) {
             try {
                 return $responseManager->responseQueryBuilder($world->convertToArray());
+            } catch (Exception $e) {
+                //@TODO handle error
+                return $responseManager->responseUnauthorized();
+            }
+        }
+        //@TODO handle error
+        return $responseManager->responseUnauthorized();
+    }
+
+    #[Route('/{worldSlug}/characters', name: 'characters', methods: ['GET'])]
+    #[ParamConverter('world', class: World::class, options: ['mapping' => ['worldSlug' => 'uuid']])]
+    public function worldCharacters(World $world, UserManager $userManager, ResponseManager $responseManager, CharacterRepository $characterRepository): Response
+    {
+        $token = explode(' ', $_SERVER['HTTP_AUTHORIZATION']);
+        $isAuth = $userManager->checkUser($token[1]);
+        if ($isAuth) {
+            try {
+                return $responseManager->responseQueryBuilder($characterRepository->findAllByWorldToArray($world));
             } catch (Exception $e) {
                 //@TODO handle error
                 return $responseManager->responseUnauthorized();

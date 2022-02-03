@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(#141e30, #243b55);
+  background-color: $secondary-color;
 
   .register__page__container {
     margin-left: $side-navbar-width; //side-bar relative
@@ -18,7 +18,6 @@
     .register_container {
       min-height: 30rem;
       background: $primary-color;
-      box-shadow: 0 15px 25px $primary-color;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -28,7 +27,6 @@
 
       .register_picture {
         width: 15rem;
-        filter: invert(100%);
       }
 
       .register_form_container {
@@ -37,7 +35,7 @@
         align-items: center;
 
         .loading {
-          color: $white;
+          color: $text-color;
         }
 
         .register_form_error {
