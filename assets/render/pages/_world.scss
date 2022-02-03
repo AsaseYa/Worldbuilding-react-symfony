@@ -29,7 +29,6 @@ $picture_height: calc(#{$card_width} * 9 / 16);
         background-color: $primary-color;
         width: $card_width;
         border-radius: $border-radius;
-        box-shadow: 0 15px 25px $primary-color;
         min-height: 15rem;
 
         img {
@@ -51,7 +50,7 @@ $picture_height: calc(#{$card_width} * 9 / 16);
             padding: 1rem;
             font-size: 1.2rem;
             font-weight: bolder;
-            color: $white;
+            color: $text-color;
           }
 
           .world_card_content {
@@ -66,13 +65,13 @@ $picture_height: calc(#{$card_width} * 9 / 16);
               padding: 1rem 0.5rem 1rem 0.5rem;
               max-height: 8rem;
               overflow-y: scroll;
-              color: $white;
+              color: $text-color;
             }
 
             .world_card_creation {
               text-align: end;
               padding: 1rem;
-              color: $white;
+              color: $text-color;
             }
           }
         }
