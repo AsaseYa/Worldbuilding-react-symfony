@@ -2,8 +2,9 @@ import React from 'react';
 
 const MyComponent = ({label, name, required, type, value, onChange}) => {
     return (
-        <div id={`input_container_${label}`} className={'input_container'} >
+        <div className={`${type}_container`}>
             <input
+                className={`${type}_input`}
                 value={value}
                 onChange={onChange}
                 type={type}
@@ -12,7 +13,7 @@ const MyComponent = ({label, name, required, type, value, onChange}) => {
                 name={name}
                 placeholder={''}
             />
-            <label className={required ? 'required' : ''} htmlFor={label}>{label}</label>
+            <label className={required ? `${type}_label required` : `${type}_label`} htmlFor={label}>{label}</label>
         </div>
     );
 };

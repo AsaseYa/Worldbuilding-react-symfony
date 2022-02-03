@@ -31,4 +31,10 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig');
     }
+
+    #[Route('/worlds/{worldSlug}', name: 'app_worlds_show')]
+    public function worldShow(): Response
+    {
+        return $this->render('default/index.html.twig');
+    }
 }

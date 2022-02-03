@@ -1,0 +1,98 @@
+$card_width: 30rem;
+$picture_height: calc(#{$card_width} * 9 / 16);
+
+.page__container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(#141e30, #243b55);
+
+  .world__stats__page__container {
+    display: flex;
+    flex-direction: column;
+    margin-left: $side-navbar-width; //side-bar relative
+    width: 100%;
+
+    .world__stats__dashboard {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 3rem 1rem 3rem 1rem;
+      gap: 2rem;
+
+      .world__stats__card {
+        display: flex;
+        flex-direction: column;
+        background-color: $primary-color;
+        width: $card_width;
+        border-radius: $border-radius;
+        box-shadow: 0 15px 25px $primary-color;
+        min-height: 15rem;
+
+        img {
+          width: $card_width;
+          height: $picture_height;
+          border-top-left-radius: $border-radius;
+          border-top-right-radius: $border-radius;
+        }
+
+        .world_card_informations {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          height: auto;
+
+          .world_card_name {
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            color: $white;
+          }
+
+          .world_card_content {
+            width: 100%;
+            height: 12rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .world_card_description {
+              text-align: justify;
+              padding: 1rem 0.5rem 1rem 0.5rem;
+              max-height: 8rem;
+              overflow-y: scroll;
+              color: $white;
+            }
+
+            .world_card_creation {
+              text-align: end;
+              padding: 1rem;
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .world__stats__dashboard {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        background-color: $primary-color;
+        border-radius: $border-radius;
+        box-shadow: 0 15px 25px $primary-color;
+
+        .world__stats__dashboard__container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          color: $white;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
