@@ -5,7 +5,6 @@ import {NavLink} from "react-router-dom";
 import OptionBar from "../components/navbar/OptionBar";
 
 const World = () => {
-    const [open, setOpen] = React.useState(false);
     const [data, setData] = useState(null)
 
     useEffect(() => {
@@ -28,7 +27,7 @@ const World = () => {
         <div className={'page__container'}>
             <SideNavbar/>
             <div className="world__page__container">
-                <OptionBar open={open} setOpen={setOpen}/>
+                <OptionBar/>
                 <div className="world__card__container">
                     {data &&
                         data.map(({id, name, isPublic, url, createdAt, description, uuid}) => (

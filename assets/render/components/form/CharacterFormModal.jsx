@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import TextInput from "./TextInput";
 import SubmitButton from "./SubmitButton";
 import axios from "axios";
 import {TextareaAutosize} from "@mui/material";
+import React, {useState} from "react";
+import Modal from "@mui/material/Modal";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const style = {
     position: 'absolute',
@@ -22,11 +22,11 @@ const style = {
     color: '#FFFFFF',
 };
 
-const WorldFormModal = ({openWorld, setOpenWorld}) => {
+const CharacterFormModal = ({openCharacter, setOpenCharacter}) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const handleOpen = () => setOpenWorld(true);
-    const handleClose = () => setOpenWorld(false);
+    const handleOpen = () => setOpenCharacter(true);
+    const handleClose = () => setOpenCharacter(false);
 
     let [state, setState] = useState({
         world: {
@@ -75,7 +75,7 @@ const WorldFormModal = ({openWorld, setOpenWorld}) => {
             );
             let response = JSON.parse(res.request.response);
             if (response.success) {
-                setOpenWorld(false)
+                setOpenCharacter(false)
                 setLoading(false);
                 setState({
                     world: {
@@ -97,11 +97,11 @@ const WorldFormModal = ({openWorld, setOpenWorld}) => {
 
     return (
         <div>
-            <SubmitButton value={'Nouveau monde'} onClick={handleOpen} />
+            <SubmitButton value={'Nouveau Personnage'} onClick={handleOpen} />
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                open={openWorld}
+                open={openCharacter}
                 onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -109,10 +109,10 @@ const WorldFormModal = ({openWorld, setOpenWorld}) => {
                     timeout: 500,
                 }}
             >
-                <Fade in={openWorld}>
+                <Fade in={openCharacter}>
                     <Box sx={style}>
                         <Typography id="transition-modal-title" variant="h6" component="h2">
-                            Créer un monde
+                            Créer un personnage
                         </Typography>
                         <div id="transition-modal-description">
                             <form onSubmit={worldSubmit}>
@@ -149,4 +149,4 @@ const WorldFormModal = ({openWorld, setOpenWorld}) => {
     );
 };
 
-export default WorldFormModal;
+export default CharacterFormModal;
